@@ -1,7 +1,8 @@
 # EEG Brain Source Reconstruction Tool
 
 Vibecoded. Do not use as medical tool. Could be all bs. Ask from 
-AI what it thinks before using perhaps. 
+AI what it thinks before using perhaps. Does not work with gamma frequencies 
+due to Nyquist error. 
 
 A simple GUI tool for visualizing EEG source reconstruction using MNE-Python. This tool helps visualize where
 EEG signals might be coming from in the brain using standard computational methods.
