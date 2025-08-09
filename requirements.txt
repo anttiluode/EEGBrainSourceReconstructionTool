@@ -1,0 +1,29 @@
+# Core dependencies for EEG Brain Source Reconstruction Tool
+# These versions are tested and known to work well together
+
+# MNE-Python - neuroimaging toolkit (core requirement)
+mne>=1.4.0,<1.8.0
+
+# Scientific computing stack
+numpy>=1.21.0,<2.0.0
+scipy>=1.7.0,<2.0.0
+matplotlib>=3.5.0,<4.0.0
+
+# 3D visualization backends (choose one or install both)
+# PyVista - recommended for most users
+pyvista>=0.37.0,<0.45.0
+pyvistaqt>=0.9.0,<0.12.0
+
+# Alternative 3D backend (heavier but more features)
+# mayavi>=4.7.0,<5.0.0
+
+# GUI framework (usually included with Python)
+# Note: tkinter comes with most Python installations
+
+# Optional: Enhanced file format support
+# pyedflib>=0.1.30  # For better EDF file handling
+# h5py>=3.6.0       # For HDF5 format support
+
+# Development and testing (optional)
+# pytest>=6.0.0
+# pytest-cov>=3.0.0
