@@ -103,10 +103,6 @@ This tool is designed for:
 - **Exploring neuroscience methods**
 - **Research and education purposes**
 
-## Contributing
-
-Feel free to submit issues and pull requests. This is an educational tool, so contributions that improve understanding and usability are welcome.
-
 ## License
 
 MIT License - Feel free to use for educational and research purposes.
