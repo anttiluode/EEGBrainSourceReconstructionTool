@@ -52,7 +52,7 @@ pip install pyvista pyvistaqt
 3. Run the Python script
 
 ```bash
-git clone https://github.com/yourusername/eeg-source-reconstruction
+git clone https://github.com/anttiluode/EEGBrainSourceReconstructionTool
 cd eeg-source-reconstruction
 pip install -r requirements.txt
 python eeg_source_reconstruction.py
