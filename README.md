@@ -209,21 +209,4 @@ MIT License - Free for educational and research use
 - **PyVista developers** for 3D visualization capabilities
 - **Neuroscience community** for method development and validation
 
-## 📞 Support
-
-- **Issues**: Report bugs on GitHub Issues
-- **Questions**: Use GitHub Discussions
-- **Email**: your.email@example.com
-
-## 🔮 Future Enhancements
-
-- [ ] Individual MRI support (when available)
-- [ ] Connectivity analysis between regions
-- [ ] Real-time processing capabilities
-- [ ] Machine learning integration
-- [ ] Group analysis features
-- [ ] Report generation
-
----
-
 **Remember**: This tool provides computational estimates of brain activity based on scalp EEG. Results should be interpreted with caution and in the context of the data quality, preprocessing steps, and inherent limitations of EEG source localization.
