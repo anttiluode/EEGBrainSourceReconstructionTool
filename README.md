@@ -1,118 +1,229 @@
-# EEG Brain Source Reconstruction Tool
+# EEG Brain Source Reconstruction Tool (Enhanced Version)
 
-Vibecoded. Do not use as medical tool. Could be all bs. Ask from 
-AI what it thinks before using perhaps. Does not work with gamma frequencies 
-due to Nyquist error. 
+(Vibecoded - new version by Opus) 
 
-A simple GUI tool for visualizing EEG source reconstruction using MNE-Python. This tool helps visualize where
-EEG signals might be coming from in the brain using standard computational methods.
+A comprehensive GUI tool for EEG source localization using MNE-Python. This enhanced version features multiple inverse methods, advanced preprocessing, and robust visualization options.
 
 ![EEG Source Reconstruction](brain.png)
 
-## What This Tool Does
+## ⚠️ Important Notice
 
-- **Loads EEG files** (EDF, BDF, FIF formats)
-- **Reconstructs brain sources** using sLORETA inverse modeling
-- **Visualizes results** on a 3D brain template
-- **Analyzes different frequency bands** (Delta, Theta, Alpha, Beta, Gamma)
-- **Shows various metrics** (Phase patterns, Power distribution, Raw signals)
+**This is an educational/research tool. Not for medical use.** Results are computational estimates based on mathematical models, not actual brain imaging. Always consult qualified medical professionals for health-related concerns.
 
-## What This Tool Does NOT Do
+## 🚀 New Features in Enhanced Version
 
-❌ **This is not a medical device or brain scanner**  
-❌ **This does not create real brain scans**  
-❌ **This is not for medical diagnosis**  
-❌ **Results are computational estimates, not medical imaging**
+- **Multiple inverse methods**: sLORETA, dSPM, MNE, eLORETA
+- **Advanced preprocessing**: Automatic bad channel detection, artifact removal (basic & ICA)
+- **Flexible frequency analysis**: Including broadband (0.5-50 Hz) option
+- **Enhanced visualizations**: Power, phase, raw amplitude, and statistical maps
+- **Better UI**: Tabbed interface, progress bar, real-time logging
+- **Robust error handling**: Automatic montage matching, Nyquist frequency checking
+- **Export capabilities**: Save source estimates and figures
 
-## How It Works
+## 🧠 What This Tool Does
 
-1. **Uses MNE-Python's fsaverage brain template** - a standard anatomical brain model
-2. **Applies sLORETA source localization** - estimates where scalp EEG signals might originate
-3. **Projects results onto brain surface** - visualizes estimated source activity
-4. **Shows temporal evolution** - animate through time to see changes
+- **Loads EEG files** (EDF, BDF, FIF, SET, VHDR formats)
+- **Preprocesses data** automatically (filtering, artifact removal, bad channel interpolation)
+- **Reconstructs brain sources** using multiple inverse modeling methods
+- **Visualizes results** on interactive 3D brain or 2D fallback plots
+- **Analyzes frequency bands** (Delta, Theta, Alpha, Beta, Gamma, Broadband)
+- **Shows various metrics** (Phase synchronization, Power distribution, Statistical significance)
 
-## Technical Details
+## ❌ What This Tool Does NOT Do
 
-- **Forward modeling**: 3-layer head model (brain, skull, scalp)
-- **Inverse solution**: sLORETA (standardized Low Resolution Electromagnetic Tomography)
-- **Brain template**: MNE's fsaverage standard brain
-- **Visualization**: 3D cortical surface mapping
+- **Not a medical device or diagnostic tool**
+- **Does not create real brain scans (like MRI/CT)**
+- **Cannot replace clinical EEG interpretation**
+- **Results are estimates, not ground truth**
 
-## Requirements
+## 🔧 Technical Improvements
+
+### Preprocessing Pipeline
+- Automatic bad channel detection using variance-based z-scores
+- Keeps important frontal channels (FP1, FP2) despite high variance
+- ICA-based EOG artifact removal option
+- Smart resampling based on frequency band requirements
+- Proper handling of line noise (50/60 Hz notch filtering)
+
+### Source Reconstruction Methods
+1. **sLORETA** - Standardized low-resolution electromagnetic tomography (default)
+2. **dSPM** - Dynamic statistical parametric mapping
+3. **MNE** - Minimum norm estimate
+4. **eLORETA** - Exact low-resolution electromagnetic tomography
+
+### Visualization Types
+- **Power Distribution**: Shows strength of brain activity
+- **Phase Patterns**: Reveals timing/synchronization of brain waves
+- **Raw Amplitude**: Direct reconstructed source signals
+- **Statistical Maps**: Z-score thresholded significant activations
+
+## 📋 Requirements
 
 ```bash
+# Core dependencies
 pip install mne numpy scipy matplotlib tkinter
-```
 
-For 3D visualization (recommended):
-```bash
+# For 3D visualization (highly recommended)
 pip install pyvista pyvistaqt
+
+# Optional: For ICA artifact removal
+pip install scikit-learn
+
+# Optional: Alternative 3D backend
+pip install mayavi
 ```
 
-## Installation
-
-1. Clone this repository
-2. Install dependencies
-3. Run the Python script
+## 🛠️ Installation
 
 ```bash
-git clone https://github.com/anttiluode/EEGBrainSourceReconstructionTool
-cd eeg-source-reconstruction
+git clone https://github.com/yourusername/EEGBrainSourceReconstructionTool
+cd EEGBrainSourceReconstructionTool
 pip install -r requirements.txt
-python eeg_source_reconstruction.py
+python EEGBrainSourceReconstructionTool2.py
 ```
 
-## Usage
+## 📖 Usage Guide
 
+### Quick Start
 1. **Launch the application**
-2. **Select frequency band** (e.g., Alpha for relaxed states)
-3. **Choose visualization type** (Phase patterns, Power, or Raw signals)
-4. **Load an EEG file** (multi-channel EEG data required)
-5. **View 3D brain visualization** (if 3D backend available)
+2. **Load EEG file** using "Load EEG File" button
+3. **Configure settings** in Basic/Advanced tabs
+4. **Click "Process & Reconstruct"**
+5. **Interact with 3D brain** visualization
 
-## File Requirements
+### Basic Settings
+- **Frequency Band**: Choose the brain rhythm to analyze
+  - Delta (0.5-4 Hz): Deep sleep, unconscious processes
+  - Theta (4-8 Hz): Memory, meditation, creativity
+  - Alpha (8-12 Hz): Relaxed awareness, eyes closed
+  - Beta (12-30 Hz): Active thinking, focus
+  - Gamma (30-50 Hz): Cognitive processing, binding
+  - Broadband (0.5-50 Hz): All frequencies
 
-- **Multi-channel EEG data** (minimum 4 channels with known positions)
-- **Standard electrode names** (follows 10-20 system)
-- **Supported formats**: EDF, BDF, FIF
-- **Preprocessed data recommended** (filtered, artifact-free)
+- **Visualization Type**: How to display the results
+  - Power: Best for seeing active brain regions
+  - Phase: Shows synchronization patterns
+  - Raw: Direct source amplitude
+  - Statistical: Highlights significant activations
 
-## Scientific Background
+### Advanced Settings
+- **Preprocessing Options**:
+  - Auto-detect bad channels
+  - Artifact removal (basic filters or ICA)
+  
+- **Source Reconstruction**:
+  - Choose inverse method
+  - Adjust source space density
+  - Set SNR/regularization
 
-This tool implements standard EEG source localization methods used in neuroscience research:
+- **Output Options**:
+  - Save source estimates
+  - Export figures
 
-- **sLORETA**: Standardized low-resolution brain electromagnetic tomography
-- **Forward modeling**: Mathematical model of signal propagation from brain to scalp
-- **Inverse problem**: Estimating brain sources from scalp measurements
-- **fsaverage template**: Standard brain anatomy from FreeSurfer
+### 3D Brain Controls
+- **Left click + drag**: Rotate brain
+- **Right click + drag**: Zoom in/out
+- **Middle click + drag**: Pan view
+- **Spacebar**: Start/stop time animation
+- **Time slider**: Explore different time points
 
-## Limitations
+## 📊 File Requirements
 
-⚠️ **Important Limitations:**
-- Results are **estimates** based on mathematical modeling
-- Requires **good quality EEG data** with proper electrode placement
-- **Spatial resolution** is inherently limited compared to fMRI/MEG
-- **Not validated for clinical use**
-- Results depend on head model accuracy and data quality
+- **Multi-channel EEG** (minimum 10 channels recommended)
+- **Standard electrode names** (10-20, 10-10, or 10-5 system)
+- **Supported formats**: 
+  - European Data Format (.edf)
+  - BioSemi Data Format (.bdf)
+  - MNE native format (.fif)
+  - EEGLAB format (.set)
+  - BrainVision format (.vhdr)
 
-## Educational Use
+## 🧪 Scientific Background
 
-This tool is designed for:
-- **Learning about EEG source localization**
-- **Understanding brain signal processing**
-- **Exploring neuroscience methods**
-- **Research and education purposes**
+This tool implements peer-reviewed methods from computational neuroscience:
 
-## License
+### Forward Modeling
+- **BEM (Boundary Element Method)**: 3-layer realistic head model
+- **Conductivity values**: Brain (0.3), Skull (0.006), Scalp (0.3) S/m
+- **Source space**: Cortical surface with adjustable density
 
-MIT License - Feel free to use for educational and research purposes.
+### Inverse Solutions
+- **sLORETA**: Zero localization error in noise-free simulations
+- **dSPM**: Provides statistical maps with noise normalization
+- **MNE**: L2 minimum norm with depth weighting
+- **eLORETA**: Exact zero-error localization in the presence of measurement noise
 
-## Acknowledgments
+### Brain Template
+- **fsaverage**: FreeSurfer average brain from 40 subjects
+- **Surface models**: Pial and white matter surfaces
+- **Coordinate system**: MNI space
 
-- **MNE-Python team** for the excellent neuroimaging toolkit
+## ⚠️ Known Limitations
+
+1. **Spatial Resolution**: ~1-2 cm at best (inherent to EEG)
+2. **Deep Sources**: Limited sensitivity to subcortical structures
+3. **Nyquist Frequency**: High-frequency analysis limited by sampling rate
+4. **Head Model**: Uses template brain, not individual anatomy
+5. **Temporal Smoothing**: Some methods assume temporal stationarity
+
+## 🔍 Troubleshooting
+
+### Common Issues
+
+**"Cannot fit headshape without digitization"**
+- Solution: Tool now automatically applies standard montages
+- Ensure channel names follow standard conventions
+
+**"Nyquist frequency error"**
+- Solution: Tool automatically adjusts filtering based on sampling rate
+- For gamma band, need at least 100 Hz sampling rate
+
+**"3D visualization not appearing"**
+- Solution: Fixed in enhanced version with proper threading
+- Fallback to 2D plots if 3D backends unavailable
+
+**"Bad channels detected"**
+- Solution: Tool handles automatically, keeps important frontal channels
+- Can disable in Advanced Settings if needed
+
+### Platform-Specific Notes
+
+**Windows**: Qt warnings are cosmetic and can be ignored
+**macOS**: May need to install XQuartz for some 3D backends
+**Linux**: Ensure OpenGL drivers are properly installed
+
+## 📚 Educational Resources
+
+- [MNE-Python Tutorials](https://mne.tools/stable/tutorials/)
+- [Source Localization Theory](https://www.sciencedirect.com/topics/neuroscience/source-localization)
+- [EEG Forward/Inverse Problem](https://en.wikipedia.org/wiki/EEG_analysis#Source_localization)
+
+## 📄 License
+
+MIT License - Free for educational and research use
+
+## 🙏 Acknowledgments
+
+- **MNE-Python developers** for the comprehensive neuroimaging toolkit
 - **FreeSurfer team** for the fsaverage brain template
-- **Neuroscience community** for developing these methods
+- **PyVista developers** for 3D visualization capabilities
+- **Neuroscience community** for method development and validation
 
-## Disclaimer
+## 📞 Support
 
-This software is for educational and research purposes only. It is not intended for medical diagnosis or clinical decision-making. Always consult qualified medical professionals for any health-related concerns.
+- **Issues**: Report bugs on GitHub Issues
+- **Questions**: Use GitHub Discussions
+- **Email**: your.email@example.com
+
+## 🔮 Future Enhancements
+
+- [ ] Individual MRI support (when available)
+- [ ] Connectivity analysis between regions
+- [ ] Real-time processing capabilities
+- [ ] Machine learning integration
+- [ ] Group analysis features
+- [ ] Report generation
+
+---
+
+**Remember**: This tool provides computational estimates of brain activity based on scalp EEG. Results should be interpreted with caution and in the context of the data quality, preprocessing steps, and inherent limitations of EEG source localization.
