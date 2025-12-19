@@ -1,6 +1,6 @@
 # EEG Brain Source Reconstruction Tool (Enhanced Version)
 
-EDIT: Added new version that: "This code performs EEG source reconstruction on a canonical cortical surface and decomposes the resulting activity into connectome harmonic modes derived from the cortical Laplacian. It separates structure-coupled (low-order) activity from structure-decoupled “innovation” signals (high-order modes), enabling time-resolved visualization and analysis of structure–function decoupling in the human brain."
+EDIT: Added new version that: "This code performs EEG source reconstruction on a canonical cortical surface and decomposes the resulting activity into connectome harmonic modes derived from the cortical Laplacian. It separates structure-coupled (low-order) activity from structure-decoupled “innovation” signals (high-order modes), enabling time-resolved visualization and analysis of structure–function decoupling in the human brain." Naturally as of now using the generic MNE brain so the EEG wont fit the brain. 
 
 (Vibecoded - new version by Opus) 
 
