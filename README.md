@@ -1,5 +1,7 @@
 # EEG Brain Source Reconstruction Tool (Enhanced Version)
 
+EDIT: Added new version that: "This code performs EEG source reconstruction on a canonical cortical surface and decomposes the resulting activity into connectome harmonic modes derived from the cortical Laplacian. It separates structure-coupled (low-order) activity from structure-decoupled “innovation” signals (high-order modes), enabling time-resolved visualization and analysis of structure–function decoupling in the human brain."
+
 (Vibecoded - new version by Opus) 
 
 A comprehensive GUI tool for EEG source localization using MNE-Python. This enhanced version features multiple inverse methods, advanced preprocessing, and robust visualization options.
